@@ -1,0 +1,121 @@
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>index</title> {% load staticfiles %}
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+<link rel="stylesheet"
+	href="https://use.fontawesome.com/releases/v5.3.1/css/all.css"
+	integrity="sha384-mzrmE5qonljUremFsqc01SB46JvROS7bZs3IO2EmfFsd15uHvIt+Y8vEf7N7fWAU"
+	crossorigin="anonymous">
+<link rel="stylesheet"
+	href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+<!-- Bootstrap core CSS -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.0.0/css/bootstrap.min.css"
+	rel="stylesheet">
+<!-- Material Design Bootstrap -->
+<link
+	href="https://cdnjs.cloudflare.com/ajax/libs/mdbootstrap/4.5.0/css/mdb.min.css"
+	rel="stylesheet">
+
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script
+	src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+<script
+	src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+
+</head>
+<body>
+	<div class="container">
+		<!--Navbar-->
+		<nav class="navbar navbar-expand-lg navbar-dark primary-color">
+
+			<!-- Navbar brand -->
+			<a class="navbar-brand" href="./index">Akshara</a>
+
+			<!-- Collapse button -->
+			<button class="navbar-toggler" type="button" data-toggle="collapse"
+				data-target="#basicExampleNav" aria-controls="basicExampleNav"
+				aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+
+			<!-- Collapsible content -->
+			<div class="collapse navbar-collapse" id="basicExampleNav">
+
+				<!-- Links -->
+				<ul class="navbar-nav mr-auto">
+					<li class="nav-item active"><a class="nav-link" href="#">Home
+							<span class="sr-only">(current)</span>
+					</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">About us</a>
+					</li>
+					<li class="nav-item"><a class="nav-link" href="#">Contact</a>
+					</li>
+
+					<!-- Dropdown -->
+					<li class="nav-item dropdown"><a
+						class="nav-link dropdown-toggle" id="navbarDropdownMenuLink"
+						data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Dropdown</a>
+						<div class="dropdown-menu dropdown-primary"
+							aria-labelledby="navbarDropdownMenuLink">
+							<a class="dropdown-item" href="#">Home</a> <a
+								class="dropdown-item" href="#">About us</a> <a
+								class="dropdown-item" href="#">Contact</a>
+						</div></li>
+
+				</ul>
+				<!-- Links -->
+			</div>
+			<!-- Collapsible content -->
+
+		</nav>
+		<!--/.Navbar-->
+		<br>
+		<h3>Welcome to Akshara Foundation</h3>
+		<div id="msg">{{msg}}</div>
+		<form action="./urlsubmit" method="POST" id="createurl">
+			{% csrf_token %}
+			<div class="row">
+				<div class="col-md-6">
+					<input class="form-control" type="text" name="url"
+						placeholder="Enter file url" aria-label="Search">
+				</div>
+				<div class="col-md-6">
+					<button type="submit" id="urlsubmit" class="btn btn-primary">Submit</button>
+				</div>
+			</div>
+		</form>
+		<form action='api/gpcontest/aggregate' method="GET">
+			<div class="row">
+				<div class="col-md-3">
+					<input class="form-control" type="text" name="name"
+						placeholder="Region name" aria-label="Search">
+				</div>
+				<div class="col-md-3">
+					<select class="browser-default custom-select" name="type">
+						<option disabled selected>Select Type</option>
+						<option value="district">District</option>
+						<option value="block">Block</option>
+						<option value="cluster">Cluster</option>
+						<option value="gram_panchayat">Gram Panchayat</option>
+					</select>
+
+				</div>
+				<div class="col-md-3">
+					<button type="submit" id="" class="btn btn-primary">Search</button>
+				</div>
+			</div>
+		</form>
+		<br>
+		<div id="tableres">{{student_data }}</div>
+	</div>
+
+	<!--  <script type="text/javascript" src="/public/js/index.js"></script>-->
+</body>
+</html>
