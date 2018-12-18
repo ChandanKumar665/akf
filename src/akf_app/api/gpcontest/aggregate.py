@@ -4,6 +4,8 @@ from akf_app import model_form
 from django.shortcuts import redirect, render
 from akf_app.util import show_msg_dialog
 from django.utils.html import format_html
+from django.http import JsonResponse
+import json
 
 
 def get_aggregate(req):
@@ -22,7 +24,9 @@ def get_aggregate(req):
                 elif rval != -20 and rval != None:
                     rval['region'] = type
                     rval['temp'] = rval.get(type)
-                    return render(req, 'aggregate.html', rval)
+                    print('success')
+                    return JsonResponse(rval,safe=False)
+#                     return render(req, 'aggregate.html', rval)
                      
         elif type == 'block':
             if name != '' and name != None:
@@ -36,7 +40,8 @@ def get_aggregate(req):
                 elif rval != -20 and rval != None:
                     rval['region'] = type
                     rval['temp'] = rval.get(type)
-                    return render(req, 'aggregate.html', rval)
+                    return JsonResponse(rval,safe=False)
+#                     return render(req, 'aggregate.html', rval)
                  
         elif type == 'cluster':
             if name != '' and name != None:
@@ -50,7 +55,8 @@ def get_aggregate(req):
                 elif rval != -20 and rval != None:
                     rval['region'] = type
                     rval['temp'] = rval.get(type)
-                    return render(req, 'aggregate.html', rval)
+                    return JsonResponse(rval,safe=False)
+#                     return render(req, 'aggregate.html', rval)
                  
         elif type == 'gram_panchayat':
             if name != '' and name != None:
@@ -64,7 +70,8 @@ def get_aggregate(req):
                 elif rval != -20 and rval != None:
                     rval['region'] = type
                     rval['temp'] = rval.get(type)
-                    return render(req, 'aggregate.html', rval)
+#                     return render(req, 'aggregate.html', rval)
+                    return JsonResponse(rval,safe=False)
         else:
             error = show_msg_dialog('error', 'empty values sent')
             return render(req, 'aggregate.html', {'msg':format_html(error)})           
